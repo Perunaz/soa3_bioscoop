@@ -1,0 +1,11 @@
+{
+  "name": "soa3_bioscoop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Caelan van Eijnsbergen",
+  "license": "ISC"
+}
