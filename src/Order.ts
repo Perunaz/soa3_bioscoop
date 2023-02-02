@@ -25,7 +25,7 @@ class Order {
     }
 
     public export(exportFormat: TicketExportFormat): void {
-        if (exportFormat == TicketExportFormat.PlainText) {
+        if (exportFormat == TicketExportFormat.PLAINTEXT) {
             console.log("PlainText");
         } else {
             console.log("Json");

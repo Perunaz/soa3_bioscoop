@@ -1,5 +1,4 @@
-
-enum TicketExportFormat {
-    PlainText,
-    Json
+const enum TicketExportFormat {
+    PLAINTEXT,
+    JSON
 }
