@@ -20,11 +20,37 @@ class Order {
     }
 
     public calculatePrice(): number {
-        if(this.isStudentOrder == true || this.seatReservations[0].
+        var dayOfWeek = this.seatReservations[0].getDateTime().getDay();
+        var isWeekend = (dayOfWeek === 5) || (dayOfWeek  === 0);
+        var price = 0;
 
-            //get date from moviescreening
+        if (this.isStudentOrder || !isWeekend) {
+            for(var i = 0; i < this.seatReservations.length; i++) { 
+                if(i !% 2 == 0) { 
+                    price += this.seatReservations[i].getPrice();
+                    if(this.seatReservations[i].getPremium()) { 
+                        if(this.isStudentOrder) { 
+                            price += 2;
+                        } else {
+                            price += 3;
+                        }
+                    }
+                }
+            }
+        } else {
+            this.seatReservations.forEach( t => {
+                price += t.getPrice()
+                if(t.getPremium()) {
+                    price += 3;
+                }
+            });
+        }
 
+        if(isWeekend && this.isStudentOrder && this.seatReservations.length >= 6) {
+            price = price * 0.9
+        }
 
+        return price;
     }
 
     public export(exportFormat: TicketExportFormat): void {
