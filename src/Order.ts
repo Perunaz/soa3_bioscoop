@@ -27,7 +27,7 @@ class Order {
         if (this.isStudentOrder || !isWeekend) {
             for(var i = 0; i < this.seatReservations.length; i++) { 
                 if(i !% 2 == 0) { 
-                    price += this.seatReservations[i].getPrice();
+                    price += this.seatReservations[i].getScreening().getPricePerSeat();
                     if(this.seatReservations[i].getPremium()) { 
                         if(this.isStudentOrder) { 
                             price += 2;
@@ -39,7 +39,7 @@ class Order {
             }
         } else {
             this.seatReservations.forEach( t => {
-                price += t.getPrice()
+                price += t.getScreening().getPricePerSeat()
                 if(t.getPremium()) {
                     price += 3;
                 }
