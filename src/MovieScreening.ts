@@ -1,11 +1,10 @@
 class MovieScreening{
-    constructor(
-        private dateAndTime: Date,
-        private pricePerSeat: number,
-        private movie: Movie,
-    ){}
 
-    public MovieScreening(movie: Movie, dateAndTime: Date, pricePerSeat: number) {
+    private dateAndTime: Date
+    private pricePerSeat: number
+    private movie: Movie
+
+    constructor(movie: Movie, dateAndTime: Date, pricePerSeat: number) {
         this.movie = movie;
         this.dateAndTime = dateAndTime;
         this.pricePerSeat = pricePerSeat;

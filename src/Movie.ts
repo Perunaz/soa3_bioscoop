@@ -1,11 +1,10 @@
 //make class movie
 class Movie {
-    constructor(
-        private title: string,
-        private screenings: MovieScreening[] = [],
-    ) {}
 
-    public Movie(title: string) {
+    private title: string
+    private screenings: MovieScreening[] = []
+
+    constructor(title: string) {
         this.title = title;
     }
 

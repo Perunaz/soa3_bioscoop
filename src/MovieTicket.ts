@@ -1,12 +1,11 @@
 class MovieTicket {
-    constructor(
-        private rowNr: number,
-        private seatNr: number,
-        private isPremium: boolean,
-        private movieScreening: MovieScreening,
-    ) {}
 
-    public MovieTicket(movieScreening: MovieScreening, rowNr: number, seatNr: number, isPremium: boolean) {
+    private rowNr: number
+    private seatNr: number
+    private isPremium: boolean
+    private movieScreening: MovieScreening
+
+    constructor(movieScreening: MovieScreening, rowNr: number, seatNr: number, isPremium: boolean) {
         this.rowNr = rowNr;
         this.seatNr = seatNr;
         this.isPremium = isPremium;

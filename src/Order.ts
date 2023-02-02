@@ -1,11 +1,10 @@
 class Order {
-    constructor(
-        private orderNr: number,
-        private isStudentOrder: boolean,
-        private seatReservations: MovieTicket[] = [],
-    ) {}
 
-    public Order(orderNr: number, isStudentOrder: boolean) {
+    private orderNr: number
+    private isStudentOrder: boolean
+    private seatReservations: MovieTicket[] = []
+
+    constructor(orderNr: number, isStudentOrder: boolean) {
         this.orderNr = orderNr;
         this.isStudentOrder = isStudentOrder;
 
@@ -62,6 +61,7 @@ class Order {
                 plaintext += `   Info: ${ticket.toString()}\n`;
                 plaintext += `   Date: ${ticket.getScreening().toString()}\n`;
             }
+            plaintext += `   Date: ${this.calculatePrice()}\n`;
             console.log(plaintext);
         } else {
             const json = {
@@ -73,6 +73,7 @@ class Order {
                         screening: ticket.getScreening().toString(),
                     };
                 }),
+                totalPrice: this.calculatePrice(),
             };
             console.log(JSON.stringify(json));
         }
