@@ -20,7 +20,6 @@ class Order {
     }
 
     public calculatePrice(): number {
-        return 0;
         var dayOfWeek = this.seatReservations[0].getDateAndTime().getDay();
         var isWeekend = (dayOfWeek === 5) || (dayOfWeek  === 0);
         var price = 0;
