@@ -62,9 +62,8 @@ export class Order {
             plaintext += `Seat reservations:\n`;
             for (const ticket of this.seatReservations) {
                 plaintext += `   Info: ${ticket.toString()}\n`;
-                plaintext += `   Date: ${ticket.getScreening().toString()}\n`;
             }
-            plaintext += `   Date: ${this.calculatePrice()}\n`;
+            plaintext += `   Price: ${this.calculatePrice()}\n`;
             console.log(plaintext);
         } else {
             const json = {
@@ -73,7 +72,6 @@ export class Order {
                 seatReservations: this.seatReservations.map(ticket => {
                     return {
                         ticketNumber: ticket.toString(),
-                        screening: ticket.getScreening().toString(),
                     };
                 }),
                 totalPrice: this.calculatePrice(),

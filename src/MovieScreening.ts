@@ -21,6 +21,6 @@ export class MovieScreening{
     }
 
     public toString(): string {
-        return this.movie.toString() + " " + this.dateAndTime.toString();
+        return this.movie.toString() + ", Date: " + this.dateAndTime.toString();
     }
 }
