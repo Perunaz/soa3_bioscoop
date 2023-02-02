@@ -20,8 +20,11 @@ class Order {
     }
 
     public calculatePrice(): number {
+        if(this.isStudentOrder == true || this.seatReservations[0].
 
-        return 0;
+            //get date from moviescreening
+
+
     }
 
     public export(exportFormat: TicketExportFormat): void {
