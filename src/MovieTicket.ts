@@ -17,6 +17,14 @@ class MovieTicket {
         return this.movieScreening.getPricePerSeat();
     }
 
+    getScreening() {
+        return this.movieScreening;
+    }
+
+    public getDateAndTime(): Date {
+        return this.movieScreening.getDateAndTime();
+    }
+
     public toString(): string {
         return this.movieScreening.toString() + " " + this.rowNr + " " + this.seatNr + " " + this.isPremium;
     }
