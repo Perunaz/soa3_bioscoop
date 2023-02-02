@@ -10,6 +10,17 @@ class Order {
 
     }
 
-    
+    public getOrderNr(): number {
+        return this.orderNr;
+    }
+
+    // public addSeatReservation(ticket: MovieTicket): void {
+    //     this.seatReservations.push(ticket);
+    // }
+
+    public calculatePrice(): number {
+
+        return 0;
+    }
 
 }
