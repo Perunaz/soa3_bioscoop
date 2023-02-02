@@ -1,0 +1,5 @@
+
+enum TicketExportFormat {
+    PlainText,
+    Json
+}
