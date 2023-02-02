@@ -1,4 +1,4 @@
 export const enum TicketExportFormat {
-    PLAINTEXT,
-    JSON
+	PLAINTEXT,
+	JSON,
 }
