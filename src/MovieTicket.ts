@@ -13,6 +13,10 @@ class MovieTicket {
         this.movieScreening = movieScreening;
     }
 
+    getPremium() {
+        return this.isPremium;
+    }
+
     public getPrice(): number {
         return this.movieScreening.getPricePerSeat();
     }
@@ -22,7 +26,7 @@ class MovieTicket {
     }
 
     public getDateAndTime(): Date {
-        return this.movieScreening.getDateAndTime();
+        return this.movieScreening.getDateTime();
     }
 
     public toString(): string {
