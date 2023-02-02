@@ -15,7 +15,7 @@ class MovieScreening{
         return this.pricePerSeat;
     }
 
-    public getDateAndTime(): Date {
+    public getDateTime(): Date {
         return this.dateAndTime;
     }
 
