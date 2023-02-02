@@ -1,4 +1,6 @@
-class MovieTicket {
+import { MovieScreening } from "./MovieScreening";
+
+export class MovieTicket {
 
     private rowNr: number
     private seatNr: number

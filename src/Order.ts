@@ -1,4 +1,7 @@
-class Order {
+import { MovieTicket } from "./MovieTicket";
+import { TicketExportFormat } from "./TicketExportFormat";
+
+export class Order {
 
     private orderNr: number
     private isStudentOrder: boolean

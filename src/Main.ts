@@ -1,3 +1,9 @@
+import { Movie } from "./Movie";
+import { MovieScreening } from "./MovieScreening";
+import { MovieTicket } from "./MovieTicket";
+import { Order } from "./Order";
+import { TicketExportFormat } from "./TicketExportFormat";
+
 //make a new movie
 let movie = new Movie("The Matrix");
 //make a new screening

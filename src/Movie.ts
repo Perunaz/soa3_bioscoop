@@ -1,5 +1,7 @@
+import { MovieScreening } from "./MovieScreening";
+
 //make class movie
-class Movie {
+export class Movie {
 
     private title: string
     private screenings: MovieScreening[] = []
