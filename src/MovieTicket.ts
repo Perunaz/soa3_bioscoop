@@ -27,6 +27,6 @@ export class MovieTicket {
     }
 
     public toString(): string {
-        return this.movieScreening.toString() + ", row: " + this.rowNr + ", seat: " + this.seatNr + ", Premium?: " + this.isPremium;
+        return "movie: " + this.movieScreening.toString() + ", row: " + this.rowNr + ", seat: " + this.seatNr + ", premium: " + this.isPremium;
     }
 }

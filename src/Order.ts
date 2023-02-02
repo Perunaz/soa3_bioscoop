@@ -69,11 +69,7 @@ export class Order {
             const json = {
                 orderNr: this.orderNr,
                 isStudentOrder: this.isStudentOrder,
-                seatReservations: this.seatReservations.map(ticket => {
-                    return {
-                        ticketNumber: ticket.toString(),
-                    };
-                }),
+                seatReservations: this.seatReservations,
                 totalPrice: this.calculatePrice(),
             };
             console.log(JSON.stringify(json));
