@@ -13,7 +13,7 @@ class MovieTicket {
         this.movieScreening = movieScreening;
     }
 
-    public getPricePerSeat(): number {
+    public getPrice(): number {
         return this.movieScreening.getPricePerSeat();
     }
 
