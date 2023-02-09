@@ -3,19 +3,32 @@ import { TicketExportFormat } from "./TicketExportFormat";
 import { PricingStrategy } from "./strategyPattern/PricingStrategy";
 import { StudentPricingStrategy } from "./strategyPattern/StudentPricingStrategy";
 import { RegularPricingStrategy } from "./strategyPattern/RegularPricingStrategy";
+import { ExportFormatStrategy } from "./strategyPattern/ExportFormatStrategy";
+import { PlainTextExportStrategy } from "./strategyPattern/PlainTextExportStrategy";
+import { JSONExportStrategy } from "./strategyPattern/JSONExportStrategy";
 
 export class Order {
-	private orderNr: number;
-	private isStudentOrder: boolean;
+	public orderNr: number;
+	public isStudentOrder: boolean;
+	private isPlainText: boolean;
 	public seatReservations: MovieTicket[] = [];
 	private pricingStrategy: PricingStrategy;
+	private exportFormatStrategy: ExportFormatStrategy;
 
-	constructor(orderNr: number, isStudentOrder: boolean) {
+	constructor(
+		orderNr: number,
+		isStudentOrder: boolean,
+		isPlainText: boolean
+	) {
 		this.orderNr = orderNr;
 		this.isStudentOrder = isStudentOrder;
+		this.isPlainText = isPlainText;
 		this.pricingStrategy = isStudentOrder
 			? new StudentPricingStrategy()
 			: new RegularPricingStrategy();
+		this.exportFormatStrategy = isPlainText
+			? new PlainTextExportStrategy()
+			: new JSONExportStrategy();
 	}
 
 	public getOrderNr(): number {
@@ -43,24 +56,7 @@ export class Order {
 		return price;
 	}
 
-	public export(exportFormat: TicketExportFormat): void {
-		if (exportFormat == TicketExportFormat.PLAINTEXT) {
-			let plaintext = `Order nr: ${this.orderNr}\n`;
-			plaintext += `Student order: ${this.isStudentOrder}\n`;
-			plaintext += `Seat reservations:\n`;
-			for (const ticket of this.seatReservations) {
-				plaintext += `   Info: ${ticket.toString()}\n`;
-			}
-			plaintext += `   Price: ${this.calculatePrice()}\n`;
-			console.log(plaintext);
-		} else {
-			const json = {
-				orderNr: this.orderNr,
-				isStudentOrder: this.isStudentOrder,
-				seatReservations: this.seatReservations,
-				totalPrice: this.calculatePrice(),
-			};
-			console.log(JSON.stringify(json));
-		}
+	export(): void {
+		console.log(this.exportFormatStrategy.export(this));
 	}
 }
