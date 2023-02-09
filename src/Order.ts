@@ -1,14 +1,21 @@
 import { MovieTicket } from "./MovieTicket";
 import { TicketExportFormat } from "./TicketExportFormat";
+import { PricingStrategy } from "./strategyPattern/PricingStrategy";
+import { StudentPricingStrategy } from "./strategyPattern/StudentPricingStrategy";
+import { RegularPricingStrategy } from "./strategyPattern/RegularPricingStrategy";
 
 export class Order {
 	private orderNr: number;
 	private isStudentOrder: boolean;
-	private seatReservations: MovieTicket[] = [];
+	public seatReservations: MovieTicket[] = [];
+	private pricingStrategy: PricingStrategy;
 
 	constructor(orderNr: number, isStudentOrder: boolean) {
 		this.orderNr = orderNr;
 		this.isStudentOrder = isStudentOrder;
+		this.pricingStrategy = isStudentOrder
+			? new StudentPricingStrategy()
+			: new RegularPricingStrategy();
 	}
 
 	public getOrderNr(): number {
@@ -20,33 +27,10 @@ export class Order {
 	}
 
 	public calculatePrice(): number {
-		var dayOfWeek = this.seatReservations[0].getDateAndTime().getDay();
-		var isWeekend = dayOfWeek === 5 || dayOfWeek === 0;
-		var price = 0;
+		let dayOfWeek = this.seatReservations[0].getDateAndTime().getDay();
+		let isWeekend = dayOfWeek === 5 || dayOfWeek === 0;
 
-		if (this.isStudentOrder || !isWeekend) {
-			for (var i = 0; i < this.seatReservations.length; i++) {
-				if (i! % 2 == 0) {
-					price += this.seatReservations[i]
-						.getScreening()
-						.getPricePerSeat();
-					if (this.seatReservations[i].getPremium()) {
-						if (this.isStudentOrder) {
-							price += 2;
-						} else {
-							price += 3;
-						}
-					}
-				}
-			}
-		} else {
-			this.seatReservations.forEach((t) => {
-				price += t.getScreening().getPricePerSeat();
-				if (t.getPremium()) {
-					price += 3;
-				}
-			});
-		}
+		let price = this.pricingStrategy.calculatePrice(this);
 
 		if (
 			isWeekend &&

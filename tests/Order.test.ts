@@ -2,6 +2,9 @@ import { Movie } from "../src/Movie";
 import { MovieScreening } from "../src/MovieScreening";
 import { MovieTicket } from "../src/MovieTicket";
 import { Order } from "../src/Order";
+import { PricingStrategy } from "../src/strategyPattern/PricingStrategy";
+import { RegularPricingStrategy } from "../src/strategyPattern/RegularPricingStrategy";
+import { StudentPricingStrategy } from "../src/strategyPattern/StudentPricingStrategy";
 
 test("should detect premium ticket", () => {
 	let movie = new Movie("The Matrix");
