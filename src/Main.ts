@@ -16,7 +16,7 @@ let ticket4 = new MovieTicket(screening, 1, 3, true);
 let ticket5 = new MovieTicket(screening, 1, 3, true);
 let ticket6 = new MovieTicket(screening, 1, 3, true);
 //make a new order
-let order = new Order(1, true, true);
+let order = new Order(1, true);
 //add the ticket to the order
 order.addSeatReservation(ticket1);
 order.addSeatReservation(ticket2);
@@ -29,7 +29,6 @@ order.addSeatReservation(ticket6);
 console.log(order.calculatePrice());
 
 //export the order
-order.export();
+order.export(false);
 
 //export the order
-order.export();

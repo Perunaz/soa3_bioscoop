@@ -10,25 +10,17 @@ import { JSONExportStrategy } from "./strategyPattern/JSONExportStrategy";
 export class Order {
 	public orderNr: number;
 	public isStudentOrder: boolean;
-	private isPlainText: boolean;
 	public seatReservations: MovieTicket[] = [];
 	private pricingStrategy: PricingStrategy;
 	private exportFormatStrategy: ExportFormatStrategy;
 
-	constructor(
-		orderNr: number,
-		isStudentOrder: boolean,
-		isPlainText: boolean
-	) {
+	constructor(orderNr: number, isStudentOrder: boolean) {
 		this.orderNr = orderNr;
 		this.isStudentOrder = isStudentOrder;
-		this.isPlainText = isPlainText;
 		this.pricingStrategy = isStudentOrder
 			? new StudentPricingStrategy()
 			: new RegularPricingStrategy();
-		this.exportFormatStrategy = isPlainText
-			? new PlainTextExportStrategy()
-			: new JSONExportStrategy();
+		this.exportFormatStrategy = new PlainTextExportStrategy();
 	}
 
 	public getOrderNr(): number {
@@ -56,7 +48,10 @@ export class Order {
 		return price;
 	}
 
-	export(): void {
+	export(isPlainText: boolean): void {
+		this.exportFormatStrategy = isPlainText
+			? new PlainTextExportStrategy()
+			: new JSONExportStrategy();
 		console.log(this.exportFormatStrategy.export(this));
 	}
 }
