@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "ts-node ./src/Main.ts",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "author": "Caelan van Eijnsbergen",
   "license": "ISC",
