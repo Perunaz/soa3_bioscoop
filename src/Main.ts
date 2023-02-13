@@ -17,13 +17,22 @@ let ticket5 = new MovieTicket(screening, 1, 3, true);
 let ticket6 = new MovieTicket(screening, 1, 3, true);
 //make a new order
 let order = new Order(1, true);
+console.log(order.getStateToString());
 //add the ticket to the order
 order.addSeatReservation(ticket1);
 order.addSeatReservation(ticket2);
 order.addSeatReservation(ticket3);
+
+order.createOrder();
+console.log(order.getStateToString());
+
 order.addSeatReservation(ticket4);
 order.addSeatReservation(ticket5);
 order.addSeatReservation(ticket6);
+
+order.payOrder();
+console.log(order.getStateToString());
+
 
 //calculate the price
 console.log(order.calculatePrice());

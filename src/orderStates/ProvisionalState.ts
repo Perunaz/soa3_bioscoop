@@ -1,19 +1,26 @@
+import { Order } from "../Order";
 import { OrderState } from "../OrderState";
 
 export class ProvisionalState implements OrderState {
-    public EditOrder(): void {
+    private order: Order;
+
+    public constructor(_order: Order) {
+        this.order = _order;
+    }
+
+    public addSeatReservation(): void {
         console.log("Cannot edit order in initial state");
     }
 
-    public CancelOrder(): void {
+    public cancelOrder(): void {
         console.log("Cannot cancel order in initial state");
     }
 
-    public Order(): void {
+    public payOrder(): void {
         console.log("Cannot order in initial state");
     }
 
-    public CreateOrder(): void {
+    public createOrder(): void {
         console.log("Order created");
     }
 }

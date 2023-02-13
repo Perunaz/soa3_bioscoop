@@ -1,6 +1,8 @@
+import { MovieTicket } from "./MovieTicket";
+
 export interface OrderState {
-    EditOrder(): void;
-    CancelOrder(): void;
-    Order(): void;
-    CreateOrder(): void;
+    addSeatReservation(ticket?: MovieTicket): void;
+    cancelOrder(): void;
+    payOrder(): void;
+    createOrder(): void;
 }

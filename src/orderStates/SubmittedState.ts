@@ -1,19 +1,29 @@
+import { MovieTicket } from "../MovieTicket";
+import { Order } from "../Order";
 import { OrderState } from "../OrderState";
+import { PayedState } from "./PayedState";
 
 export class SubmittedState implements OrderState {
-    public EditOrder(): void {
-        console.log("Cannot edit order in initial state");
+    private order: Order;
+
+    public constructor(_order: Order) {
+        this.order = _order;
     }
 
-    public CancelOrder(): void {
-        console.log("Cannot cancel order in initial state");
+    public addSeatReservation(ticket: MovieTicket): void {
+        this.order.submitSeatReservation(ticket)
     }
 
-    public Order(): void {
-        console.log("Cannot order in initial state");
+    public cancelOrder(): void {
+        console.log("Can cancel order in submitted state");
     }
 
-    public CreateOrder(): void {
-        console.log("Order created");
+    public payOrder(): void {
+        console.log("Can pay order in submitted state");
+        this.order.setState(this.order.getPayedState());
+    }
+
+    public createOrder(): void {
+        console.log("Cannot create order");
     }
 }

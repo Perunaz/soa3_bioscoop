@@ -1,14 +1,32 @@
 import { MovieTicket } from "./MovieTicket";
+import { OrderState } from "./OrderState";
+import { InitialState } from "./orderStates/InitialState";
+import { PayedState } from "./orderStates/PayedState";
+import { ProvisionalState } from "./orderStates/ProvisionalState";
+import { SubmittedState } from "./orderStates/SubmittedState";
 import { TicketExportFormat } from "./TicketExportFormat";
 
 export class Order {
+	private initialState: OrderState;
+	private payedState: OrderState;
+	private provisionalState: OrderState;
+	private submittedState: OrderState;
+
 	private orderNr: number;
 	private isStudentOrder: boolean;
 	private seatReservations: MovieTicket[] = [];
+	private _state: OrderState;
+
 
 	constructor(orderNr: number, isStudentOrder: boolean) {
+		this.initialState = new InitialState(this);
+		this.payedState = new PayedState(this);
+		this.provisionalState = new ProvisionalState(this);
+		this.submittedState = new SubmittedState(this);
+
 		this.orderNr = orderNr;
 		this.isStudentOrder = isStudentOrder;
+		this._state = this.initialState;
 	}
 
 	public getOrderNr(): number {
@@ -16,7 +34,51 @@ export class Order {
 	}
 
 	public addSeatReservation(ticket: MovieTicket): void {
+		this._state.addSeatReservation(ticket);
+	}
+
+	public createOrder(): void {
+		this._state.createOrder();
+	}
+
+	public cancelOrder(): void {
+		this._state.cancelOrder();
+	}
+
+	public payOrder(): void {
+		this._state.payOrder();
+	}
+
+	public submitSeatReservation(ticket: MovieTicket): void { 
 		this.seatReservations.push(ticket);
+	}
+
+	public setState(state: OrderState): void {
+		this._state = state;
+	}
+
+	public getState(): OrderState {
+        return this._state;
+    }
+
+	public getStateToString(): string {
+        return this._state.constructor.name;
+    }
+
+	public getInitialState(): OrderState {
+		return this.initialState;
+	}
+
+	public getPayedState(): OrderState {
+        return this.payedState;
+	}
+	
+	public getProvisionalState(): OrderState {
+        return this.provisionalState;
+    }
+
+	public getSubmittedState(): OrderState {
+		return this.submittedState;
 	}
 
 	public calculatePrice(): number {
